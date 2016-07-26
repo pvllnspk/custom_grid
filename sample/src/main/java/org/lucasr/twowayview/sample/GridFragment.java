@@ -16,7 +16,6 @@
 
 package org.lucasr.twowayview.sample;
 
-import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -31,8 +30,10 @@ import org.lucasr.twowayview.ItemClickSupport.OnItemLongClickListener;
 import org.lucasr.twowayview.widget.DividerItemDecoration;
 import org.lucasr.twowayview.widget.TwoWayView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GridFragment extends Fragment {
-    private TwoWayView mRecyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,29 +43,21 @@ public class GridFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        final Activity activity = getActivity();
-
-
-        mRecyclerView = (TwoWayView) view.findViewById(R.id.list);
+        TwoWayView mRecyclerView = (TwoWayView) view.findViewById(R.id.list);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLongClickable(true);
-
         final ItemClickSupport itemClick = ItemClickSupport.addTo(mRecyclerView);
-
         itemClick.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(RecyclerView parent, View child, int position, long id) {
             }
         });
-
         itemClick.setOnItemLongClickListener(new OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(RecyclerView parent, View child, int position, long id) {
                 return true;
             }
         });
-
         mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int scrollState) {
@@ -74,10 +67,16 @@ public class GridFragment extends Fragment {
             public void onScrolled(RecyclerView recyclerView, int i, int i2) {
             }
         });
-
         final Drawable divider = getResources().getDrawable(R.drawable.divider);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(divider));
+        mRecyclerView.setAdapter(new GridAdapter(getActivity(), mRecyclerView, getItems()));
+    }
 
-        mRecyclerView.setAdapter(new GridAdapter(activity, mRecyclerView));
+    private List<GridItem> getItems() {
+        List<GridItem> items = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            items.add(new GridItem(i));
+        }
+        return items;
     }
 }
