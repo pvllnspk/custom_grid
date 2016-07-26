@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.lucasr.twowayview.widget.TwoWayView;
 import org.lucasr.twowayview.widget.SpannableGridLayoutManager;
 
 import java.util.List;
@@ -17,7 +18,6 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.SimpleViewHold
 
 	public static class SimpleViewHolder extends RecyclerView.ViewHolder {
 		public final TextView title;
-
 		public SimpleViewHolder(View view) {
 			super(view);
 			title = (TextView) view.findViewById(R.id.title);
