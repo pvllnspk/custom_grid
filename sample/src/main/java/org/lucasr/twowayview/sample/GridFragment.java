@@ -69,7 +69,7 @@ public class GridFragment extends Fragment {
         });
         final Drawable divider = getResources().getDrawable(R.drawable.divider);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(divider));
-        mRecyclerView.setAdapter(new GridAdapter(getActivity(), mRecyclerView, getItems()));
+        mRecyclerView.setAdapter(new GridAdapter(getActivity(), getItems()));
     }
 
     private List<GridItem> getItems() {
