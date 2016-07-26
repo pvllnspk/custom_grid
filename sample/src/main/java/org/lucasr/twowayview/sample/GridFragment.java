@@ -21,16 +21,9 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import static android.support.v7.widget.RecyclerView.SCROLL_STATE_IDLE;
-import static android.support.v7.widget.RecyclerView.SCROLL_STATE_DRAGGING;
-import static android.support.v7.widget.RecyclerView.SCROLL_STATE_SETTLING;
 
 import org.lucasr.twowayview.ItemClickSupport;
 import org.lucasr.twowayview.ItemClickSupport.OnItemClickListener;
@@ -38,14 +31,12 @@ import org.lucasr.twowayview.ItemClickSupport.OnItemLongClickListener;
 import org.lucasr.twowayview.widget.DividerItemDecoration;
 import org.lucasr.twowayview.widget.TwoWayView;
 
-public class LayoutFragment extends Fragment {
+public class GridFragment extends Fragment {
     private TwoWayView mRecyclerView;
-
-    private int mLayoutId = R.layout.layout_spannable_grid;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(mLayoutId, container, false);
+        return inflater.inflate(R.layout.layout_spannable_grid, container, false);
     }
 
     @Override
@@ -87,6 +78,6 @@ public class LayoutFragment extends Fragment {
         final Drawable divider = getResources().getDrawable(R.drawable.divider);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(divider));
 
-        mRecyclerView.setAdapter(new LayoutAdapter(activity, mRecyclerView, mLayoutId));
+        mRecyclerView.setAdapter(new GridAdapter(activity, mRecyclerView));
     }
 }
